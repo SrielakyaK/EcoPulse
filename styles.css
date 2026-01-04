@@ -1,0 +1,290 @@
+/* =====================
+   GLOBAL RESET
+===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =====================
+   ROOT COLORS
+===================== */
+:root {
+    --dark-green: #1b5e20;
+    --primary-green: #2e7d32;
+    --light-green: #66bb6a;
+    --soft-green: #e8f5e9;
+    --accent-green: #a5d6a7;
+}
+
+/* =====================
+   BODY – GREENERY BG
+===================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* =====================
+   MAIN CONTAINER
+===================== */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(14px);
+    border-radius: 26px;
+    padding: 35px;
+    box-shadow: 0 35px 90px rgba(0,0,0,0.4);
+}
+
+/* =====================
+   HEADER
+===================== */
+header {
+    text-align: center;
+    margin-bottom: 35px;
+    padding-bottom: 25px;
+    border-bottom: 3px solid var(--light-green);
+}
+
+h1 {
+    color: var(--dark-green);
+    font-size: 2.8em;
+}
+
+.tagline {
+    color: #444;
+    font-size: 1.15em;
+}
+
+.user-points {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.1em;
+}
+
+.user-points strong {
+    color: var(--primary-green);
+}
+
+/* =====================
+   TABS
+===================== */
+.tab-navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.tab-btn {
+    padding: 12px 26px;
+    border: none;
+    border-radius: 30px;
+    background: var(--soft-green);
+    color: var(--dark-green);
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.tab-btn:hover {
+    background: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, var(--dark-green), var(--light-green));
+    color: white;
+}
+
+/* =====================
+   TAB CONTENT
+===================== */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =====================
+   HEADINGS
+===================== */
+h2 {
+    color: #2c2c2c;
+    font-size: 1.9em;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: var(--primary-green);
+    margin-bottom: 15px;
+}
+
+/* =====================
+   FORMS
+===================== */
+.calculator-form {
+    display: grid;
+    gap: 25px;
+}
+
+.form-section {
+    background: rgba(255,255,255,0.85);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary-green);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 2px solid #ddd;
+    font-size: 1em;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* =====================
+   BUTTON
+===================== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--dark-green), var(--light-green));
+    color: white;
+    padding: 16px 34px;
+    border: none;
+    border-radius: 32px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 12px 30px rgba(46,125,50,0.45);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+}
+
+/* =====================
+   RESULT BOX
+===================== */
+.result-box {
+    background: linear-gradient(135deg, #1b5e20, #66bb6a);
+    color: white;
+    padding: 35px;
+    border-radius: 20px;
+    margin-top: 30px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+}
+
+.co2-value {
+    font-size: 2.4em;
+    font-weight: bold;
+}
+
+/* =====================
+   CARDS & ITEMS
+===================== */
+.breakdown-item,
+.tip-card,
+.device-item,
+.badge {
+    background: rgba(255,255,255,0.88);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    border-left: 5px solid var(--primary-green);
+}
+
+/* =====================
+   CHALLENGES
+===================== */
+.challenge-card {
+    background: linear-gradient(135deg, var(--primary-green), var(--light-green));
+    color: white;
+    padding: 25px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.challenge-card:hover {
+    transform: translateY(-5px);
+}
+
+.challenge-card.completed {
+    background: linear-gradient(135deg, #888, #aaa);
+}
+
+/* =====================
+   UPLOAD AREA
+===================== */
+.upload-area {
+    border: 3px dashed var(--primary-green);
+    border-radius: 18px;
+    padding: 60px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-area:hover {
+    background: var(--soft-green);
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.2em;
+    }
+
+    .tab-btn {
+        padding: 10px 18px;
+        font-size: 0.9em;
+    }
+}

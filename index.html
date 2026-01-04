@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoPulse - Carbon Footprint Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 EcoPulse</h1>
+            <p class="tagline">Track, Reduce, and Celebrate Your Carbon Footprint</p>
+            <div class="user-points">
+                <span>🏆 Points: <strong id="totalPoints">0</strong></span>
+                <span>🎖️ Badges: <strong id="badgeCount">0</strong></span>
+            </div>
+        </header>
+
+        <nav class="tab-navigation">
+            <button class="tab-btn active" data-tab="calculator">Calculator</button>
+            <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+            <button class="tab-btn" data-tab="devices">Device Tracker</button>
+            <button class="tab-btn" data-tab="image-analyzer">Image Analysis</button>
+            <button class="tab-btn" data-tab="tips">Tips</button>
+            <button class="tab-btn" data-tab="challenges">Challenges</button>
+        </nav>
+
+        <!-- Calculator Tab -->
+        <section id="calculator" class="tab-content active">
+            <h2>Carbon Footprint Calculator</h2>
+            
+            <div class="calculator-form">
+                <div class="form-section">
+                    <h3>🚗 Transportation</h3>
+                    <label>
+                        Mode of Transport:
+                        <select id="transportMode">
+                            <option value="bike">Bike (0 kg CO₂)</option>
+                            <option value="bus">Bus (0.05 kg/km)</option>
+                            <option value="train">Train (0.04 kg/km)</option>
+                            <option value="car">Car (0.12 kg/km)</option>
+                            <option value="flight">Flight (0.25 kg/km)</option>
+                        </select>
+                    </label>
+                    <label>
+                        Distance (km/month):
+                        <input type="number" id="transportDistance" value="0" min="0">
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <h3>⚡ Electricity Usage</h3>
+                    <label>
+                        Units consumed (kWh/month):
+                        <input type="number" id="electricityUnits" value="0" min="0">
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <h3>🔥 Cooking Fuel</h3>
+                    <label>
+                        Fuel Type:
+                        <select id="cookingFuel">
+                            <option value="lpg">LPG (3 kg CO₂/cylinder)</option>
+                            <option value="electric">Electric (0.5 kg CO₂/day)</option>
+                            <option value="induction">Induction (0.3 kg CO₂/day)</option>
+                        </select>
+                    </label>
+                    <label id="cylinderLabel">
+                        Cylinders/month:
+                        <input type="number" id="cookingAmount" value="0" min="0" step="0.1">
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <h3>🍽️ Food Habits</h3>
+                    <label>
+                        Diet Type:
+                        <select id="foodHabits">
+                            <option value="veg">Vegetarian (50 kg CO₂/month)</option>
+                            <option value="mixed">Mixed (75 kg CO₂/month)</option>
+                            <option value="nonveg">Non-Vegetarian (100 kg CO₂/month)</option>
+                        </select>
+                    </label>
+                </div>
+
+                <div class="form-section">
+                    <h3>🗑️ Waste Generation</h3>
+                    <label>
+                        Waste (kg/week):
+                        <input type="number" id="wasteAmount" value="0" min="0" step="0.1">
+                    </label>
+                    <label>
+                        <input type="checkbox" id="recycling">
+                        I practice recycling (reduces by 30%)
+                    </label>
+                </div>
+
+                <button class="btn-primary" id="calculateBtn">Calculate My Footprint</button>
+            </div>
+
+            <div id="calculatorResult" class="result-box" style="display:none;">
+                <h3>Your Carbon Footprint</h3>
+                <div class="result-value">
+                    <span class="co2-value" id="totalCO2">0</span> kg CO₂/month
+                </div>
+                <p id="comparisonText"></p>
+            </div>
+        </section>
+
+        <!-- Dashboard Tab -->
+        <section id="dashboard" class="tab-content">
+            <h2>Personal Dashboard</h2>
+            <div id="dashboardContent">
+                <p class="empty-state">Calculate your footprint first to see your dashboard!</p>
+            </div>
+        </section>
+
+        <!-- Device Tracker Tab -->
+        <section id="devices" class="tab-content">
+            <h2>Device Energy Tracker</h2>
+            <div class="device-tracker">
+                <div class="add-device-form">
+                    <h3>Add Device</h3>
+                    <input type="text" id="deviceName" placeholder="Device name (e.g., TV, Refrigerator)">
+                    <input type="number" id="deviceWattage" placeholder="Power rating (Watts)" min="0">
+                    <input type="number" id="deviceHours" placeholder="Hours used per day" min="0" step="0.1">
+                    <button class="btn-primary" id="addDeviceBtn">Add Device</button>
+                </div>
+                <div id="deviceList" class="device-list"></div>
+                <div id="deviceInsights" class="insights-box"></div>
+            </div>
+        </section>
+
+        <!-- Image Analysis Tab -->
+        <section id="image-analyzer" class="tab-content">
+            <h2>🖼️ Eco Image Analyzer</h2>
+            <div class="image-analyzer">
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="imageInput" accept="image/*" style="display:none;">
+                    <div class="upload-prompt">
+                        <span class="upload-icon">📸</span>
+                        <p>Click or drag an image to analyze</p>
+                        <p class="upload-hint">We'll detect plastic items and harmful materials</p>
+                    </div>
+                </div>
+                <div id="imagePreview" style="display:none;">
+                    <img id="previewImg" alt="Preview">
+                    <button class="btn-primary" id="analyzeBtn">Analyze Image</button>
+                </div>
+                <div id="analysisResult" class="analysis-result" style="display:none;"></div>
+            </div>
+        </section>
+
+        <!-- Tips Tab -->
+        <section id="tips" class="tab-content">
+            <h2>Personalized Reduction Tips</h2>
+            <div id="tipsContent">
+                <p class="empty-state">Calculate your footprint to get personalized tips!</p>
+            </div>
+        </section>
+
+        <!-- Challenges Tab -->
+        <section id="challenges" class="tab-content">
+            <h2>Eco Challenges</h2>
+            <div class="challenges-grid" id="challengesGrid"></div>
+            
+            <div class="badges-section">
+                <h3>Your Badges</h3>
+                <div id="badgesDisplay" class="badges-grid"></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="calculator.js"></script>
+    <script src="dashboard.js"></script>
+    <script src="tips.js"></script>
+    <script src="gamification.js"></script>
+    <script src="deviceTracker.js"></script>
+    <script src="imageAnalysis.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
